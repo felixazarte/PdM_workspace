@@ -67,7 +67,6 @@ int main(void)
 
   /* Initialize BSP Led for LED2 */
   BSP_LED_Init(LED2);
-
   /* Infinite loop */
   while (1)
   {

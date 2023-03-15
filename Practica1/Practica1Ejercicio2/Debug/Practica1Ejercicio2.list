@@ -39,13 +39,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  17 .debug_macro  00024d03  00000000  00000000  000262d0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   000076ed  00000000  00000000  0004afd3  2**0
+ 18 .debug_line   000073bc  00000000  00000000  0004afd3  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    000e0cc6  00000000  00000000  000526c0  2**0
+ 19 .debug_str    000e0cb3  00000000  00000000  0005238f  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .comment      00000050  00000000  00000000  00133386  2**0
+ 20 .comment      00000050  00000000  00000000  00133042  2**0
                   CONTENTS, READONLY
- 21 .debug_frame  00001118  00000000  00000000  001333d8  2**2
+ 21 .debug_frame  00001118  00000000  00000000  00133094  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -3689,7 +3689,7 @@ int main(void)
 	  SystemClock_Config();
  8001816:	f000 f851 	bl	80018bc <SystemClock_Config>
 
-	  /* Initialize BSP Led for LED2 */
+	  /* Initialize BSP Led for LEDS */
 	  BSP_LED_Init(LED1);
  800181a:	2000      	movs	r0, #0
  800181c:	f7fe fe68 	bl	80004f0 <BSP_LED_Init>
