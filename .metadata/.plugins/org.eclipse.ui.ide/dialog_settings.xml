@@ -17,6 +17,9 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="/home/felix/Tp_patricio_cese/PdM_workspace/Ejercicio_delayNB_1_Baez"/>
+			<item value="/home/felix/TP_programacion_C/Marcelo_Baez/EjerciciosPdM"/>
+			<item value="/home/felix/Tp_patricio_cese/PdM_workspace/practica_2"/>
 			<item value="/home/felix/Fancesco/PdM_workspace/practica_2"/>
 			<item value="/home/felix/Tp_patricio_cese/PdM_workspace"/>
 		</list>
