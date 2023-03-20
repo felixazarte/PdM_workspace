@@ -1,0 +1,10 @@
+18:32:54 **** Incremental Build of configuration Debug for project Practica_3_Azarte ****
+make -j4 all 
+arm-none-eabi-size   Practica_3_Azarte.elf 
+   text	   data	    bss	    dec	    hex	filename
+   6548	     32	   1568	   8148	   1fd4	Practica_3_Azarte.elf
+Finished building: default.size.stdout
+ 
+
+18:32:57 Build Finished. 0 errors, 0 warnings. (took 2s.851ms)
+
