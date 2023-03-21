@@ -83,13 +83,13 @@ int main(void)
   while (1)
   {
 	  if(delayRead(&delay1))
-		  BSP_LED_Toggle(LED1);
+		 BSP_LED_Toggle(LED1);
 
 	  if(delayRead(&delay2))
-		  BSP_LED_Toggle(LED2);
+		 BSP_LED_Toggle(LED2);
 
 	  if(delayRead(&delay3))
-		  BSP_LED_Toggle(LED3);
+		 BSP_LED_Toggle(LED3);
   }
 }
 

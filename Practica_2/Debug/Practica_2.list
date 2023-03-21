@@ -3446,7 +3446,7 @@ int main(void)
  80016b4:	4603      	mov	r3, r0
  80016b6:	2b00      	cmp	r3, #0
  80016b8:	d002      	beq.n	80016c0 <main+0x5c>
-		  BSP_LED_Toggle(LED1);
+		 BSP_LED_Toggle(LED1);
  80016ba:	2000      	movs	r0, #0
  80016bc:	f7fe ff68 	bl	8000590 <BSP_LED_Toggle>
 
@@ -3457,7 +3457,7 @@ int main(void)
  80016ca:	4603      	mov	r3, r0
  80016cc:	2b00      	cmp	r3, #0
  80016ce:	d002      	beq.n	80016d6 <main+0x72>
-		  BSP_LED_Toggle(LED2);
+		 BSP_LED_Toggle(LED2);
  80016d0:	2001      	movs	r0, #1
  80016d2:	f7fe ff5d 	bl	8000590 <BSP_LED_Toggle>
 
@@ -3468,7 +3468,7 @@ int main(void)
  80016de:	4603      	mov	r3, r0
  80016e0:	2b00      	cmp	r3, #0
  80016e2:	d0e2      	beq.n	80016aa <main+0x46>
-		  BSP_LED_Toggle(LED3);
+		 BSP_LED_Toggle(LED3);
  80016e4:	2002      	movs	r0, #2
  80016e6:	f7fe ff53 	bl	8000590 <BSP_LED_Toggle>
 	  if(delayRead(&delay1))
