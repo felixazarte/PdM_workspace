@@ -30,6 +30,9 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
+#define RETARDO_GREEN 200
+#define RETARDO_BLUE  200
+#define RETARDO_RED   200
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 /* UART handler declaration */
@@ -67,7 +70,7 @@ int main(void)
 	SystemClock_Config();
 
 	/* Initialize BSP Led for LEDs */
-	BSP_LED_Init(LED1);   // LED_GREE
+	BSP_LED_Init(LED1);   // LED_GREEN
 	BSP_LED_Init(LED2);   // LED_BLUE
 	BSP_LED_Init(LED3);   // LED_RED
 
@@ -80,9 +83,9 @@ int main(void)
 	bool_t red_flag   = false;
 
 	/* Initialize each delay with their respective durations */
-	delayInit(&delay1, 200);
-	delayInit(&delay2, 200);
-	delayInit(&delay3, 200);
+	delayInit(&delay1, RETARDO_GREEN);
+	delayInit(&delay2, RETARDO_BLUE);
+	delayInit(&delay3, RETARDO_RED);
 
 	/* Start the counts for one led */
 	delayRead(&delay1);
