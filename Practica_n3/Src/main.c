@@ -30,9 +30,9 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
-#define RETARDO_GREEN 200
-#define RETARDO_BLUE  200
-#define RETARDO_RED   200
+#define RETARDO_GREEN 1000
+#define RETARDO_BLUE  2000
+#define RETARDO_RED   3000
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 /* UART handler declaration */
