@@ -1,7 +1,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "API_delay.h"
-
+#include "stm32f4xx_hal.h"
 /* Private functions ---------------------------------------------------------*/
 
 /* Implementation of non-blocking delay functions */

@@ -1,10 +1,10 @@
-15:02:35 **** Incremental Build of configuration Debug for project Practica_n3 ****
+17:32:20 **** Incremental Build of configuration Debug for project Practica_n3 ****
 make -j4 all 
 arm-none-eabi-size   Practica_n3.elf 
    text	   data	    bss	    dec	    hex	filename
-   6552	     32	   1568	   8152	   1fd8	Practica_n3.elf
+   6564	     32	   1568	   8164	   1fe4	Practica_n3.elf
 Finished building: default.size.stdout
  
 
-15:02:39 Build Finished. 0 errors, 0 warnings. (took 3s.190ms)
+17:32:23 Build Finished. 0 errors, 0 warnings. (took 2s.789ms)
 

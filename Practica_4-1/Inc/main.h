@@ -24,7 +24,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include <stdio.h>
 #include "stm32f4xx_nucleo_144.h" 	/* <- BSP include */
-#include "API_delay.h"
 
 /* Exported types ------------------------------------------------------------*/
 /* ################ My variable definitions ################ */

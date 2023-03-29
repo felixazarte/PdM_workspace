@@ -19,6 +19,7 @@
  */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "API_delay.h"
 
 /** @addtogroup STM32F4xx_HAL_Examples
  * @{
@@ -30,9 +31,9 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
-#define RETARDO_GREEN 1000
-#define RETARDO_BLUE  2000
-#define RETARDO_RED   3000
+#define RETARDO_GREEN 200
+#define RETARDO_BLUE  200
+#define RETARDO_RED   200
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 /* UART handler declaration */
@@ -73,6 +74,11 @@ int main(void)
 	BSP_LED_Init(LED1);   // LED_GREEN
 	BSP_LED_Init(LED2);   // LED_BLUE
 	BSP_LED_Init(LED3);   // LED_RED
+
+	/* Apago todos los LEDs */
+	BSP_LED_Off(LED1);
+	BSP_LED_Off(LED2);
+	BSP_LED_Off(LED3);
 
 	/* Delay structures for each led */
 	delay_t delay1, delay2, delay3;

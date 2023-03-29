@@ -19,7 +19,7 @@
  */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-
+#include "API_delay.h"
 /** @addtogroup STM32F4xx_HAL_Examples
  * @{
  */
@@ -34,15 +34,15 @@ typedef enum{
 	BUTTON_FALLING,
 	BUTTON_DOWN,
 	BUTTON_RAISING,
-} antiRebote_t;
+} debounceState_t;    // estadoAntirrebote_t
 
 /* Private define ------------------------------------------------------------*/
-#define BUTTON_DEBOUNCE_TIME	40
+#define TIEMPO_ANTIRREBOTE  40
 
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 delay_t botonDelay;
-uint32_t botonEstadoActual;
+debounceState_t botonEstadoActual;
 
 /* UART handler declaration */
 UART_HandleTypeDef UartHandle;
@@ -52,16 +52,16 @@ UART_HandleTypeDef UartHandle;
 static void SystemClock_Config(void);
 static void Error_Handler(void);
 
-// Inicializa la maquina de estados finito del antirrebote del pulsador
+// Inicializa la máquina de estados finito del antirrebote del botón.
 static void debounceFSM_init();
 
-// Actualiza la maquina de estados finito del antirrebote del pulsador
+// Actualiza la máquina de estados finito del antirrebote del botón.
 static void debounceFSM_update();
 
-// Ejecuta las acciones correspondientes cuando se presiona el pulsador, invierte el estado del LED1
+// Ejecuta las acciones correspondientes cuando se presiona el botón, invierte el estado del LED1.
 static void buttonPressed();
 
-// Ejecuta las acciones correspondientes cuando se suelta el pulsador, invierte el estadi del LED3
+// Ejecuta las acciones correspondientes cuando se suelta el botón, invierte el estado del LED3.
 static void buttonReleased();
 
 /* Private functions ---------------------------------------------------------*/
@@ -107,26 +107,26 @@ int main(void)
 	}
 }
 
-// Ejecuta las acciones correspondientes cuando se presiona el pulsador.
+// Ejecuta las acciones correspondientes cuando se presiona el botón.
 void buttonPressed()
 {
 	BSP_LED_Toggle(LED1);
 }
 
-// Ejecuta las acciones correspondientes cuando se suelta el pulsador.
+// Ejecuta las acciones correspondientes cuando se suelta el botón.
 void buttonReleased()
 {
 	BSP_LED_Toggle(LED3);
 }
 
-// Inicializa la máquina de estados del antirrebote del pulsador.
+// Inicializa la máquina de estados del antirrebote del botón.
 void debounceFSM_init()
 {
-	botonEstadoActual = BUTTON_UP; // La MEF inicializa con el pulsador sin presionar.
-	delayInit(&botonDelay, BUTTON_DEBOUNCE_TIME); // Inicializo el delay.
+	botonEstadoActual = BUTTON_UP; // La MEF inicializa con el botón sin presionar.
+	delayInit(&botonDelay, TIEMPO_ANTIRREBOTE); // Inicializo el delay.
 }
 
-//Actualiza la máquina de estados del antirrebote del pulsador
+//Actualiza la máquina de estados del antirrebote del botón.
 void debounceFSM_update()
 {
 	switch (botonEstadoActual)
@@ -134,24 +134,24 @@ void debounceFSM_update()
 	case BUTTON_UP:
 		if(BSP_PB_GetState(BUTTON_USER))
 		{
-			// Se detecto que presionaron el pulsador, inicio proceso antirrebote.
+			// Se detecto que presionaron el botón, inicio proceso antirrebote.
 			botonEstadoActual = BUTTON_FALLING;
 		}
 		break;
 	case BUTTON_FALLING:
-		// Espero el tiempo configurado antes de volver a chequear el valor del pulsador.
+		// Espero el tiempo configurado antes de volver a chequear el valor del botón.
 		if(delayRead(&botonDelay))
 		{
 			// Paso el tiempo de delay.
 			if(BSP_PB_GetState(BUTTON_USER))
 			{
-				// El pulsador sigue presionado, indico que efectivamente se presionó.
+				// El botón sigue presionado, indico que efectivamente se presionó.
 				botonEstadoActual = BUTTON_DOWN;
 				buttonPressed(); // Realizo accion correspondiente a la pulsacion del pulsador.
 			}
 			else
 			{
-				// Paso el tiempo pero no estaba presionado, lo interpreto como un rebote, indico que el pulsador sigue NO presionado.
+				// Paso el tiempo pero no estaba presionado, lo interpreto como un rebote, indico que el botón sigue NO presionado.
 				botonEstadoActual = BUTTON_UP;
 			}
 		}
@@ -159,28 +159,31 @@ void debounceFSM_update()
 	case BUTTON_DOWN:
 		if(!BSP_PB_GetState(BUTTON_USER))
 		{
-			// Se detecto que soltaron el pulsador, inicio proceso antirrebote.
+			// Se detecto que soltaron el botón, inicio proceso antirrebote.
 			botonEstadoActual = BUTTON_RAISING;
 		}
 		break;
 	case BUTTON_RAISING:
-		// Espero el tiempo configurado antes de volver a chequear el valor del pulsador.
+		// Espero el tiempo configurado antes de volver a chequear el valor del botón.
 		if(delayRead(&botonDelay))
 		{
 			// Paso el tiempo de delay.
 			if(!BSP_PB_GetState(BUTTON_USER))
 			{
-				// El pulsador sigue sin ser presionado, indico que efectivamente se soltó.
+				// El botón sigue sin ser presionado, indico que efectivamente se soltó.
 				botonEstadoActual = BUTTON_UP;
 				buttonReleased(); // Realizo accion correspondiente a la liberación del pulsador.
 			}
 			else
 			{
-				// Paso el tiempo pero estaba presionado, lo interpreto como un rebote, indico que el pulsador sigue presionado.
+				// Paso el tiempo pero estaba presionado, lo interpreto como un rebote, indico que el botón sigue presionado.
 				botonEstadoActual = BUTTON_DOWN;
 			}
 
 		}
+		break;
+	default:
+		botonEstadoActual = BUTTON_UP; // En caso que pierda los estados, lo inicializo.
 		break;
 	}
 }
@@ -298,4 +301,3 @@ void assert_failed(uint8_t *file, uint32_t line)
  */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
-
