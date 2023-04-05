@@ -1,0 +1,31 @@
+/* Define to prevent recursive inclusion -------------------------------------*/
+#ifndef __API_DEBOUNCE_H
+#define __API_DEBOUNCE_H
+
+/* Includes ------------------------------------------------------------------*/
+#include "stm32f4xx_hal.h"  		/* <- HAL include */
+#include <stdint.h>					/* <- Standard integer library */
+#include <stdbool.h>				/* <- Standar bool library*/
+
+
+/* Exported types ------------------------------------------------------------*/
+/* ################ My variable definitions ################ */
+typedef bool bool_t;
+
+/* ################ My function definitions ################ */
+// Inicializa la máquina de estados finito del antirrebote del botón.
+void debounceFSM_init();
+
+// Actualiza la máquina de estados finito del antirrebote del botón.
+void debounceFSM_update();
+
+// Ejecuta las acciones correspondientes cuando se presiona el botón, invierte el estado del LED1.
+bool_t buttonPressed();
+
+// Ejecuta las acciones correspondientes cuando se suelta el botón, invierte el estado del LED3.
+bool_t buttonReleased();
+
+
+#endif /* __API_DEBOUNCE_H */
+
+/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

@@ -1,0 +1,54 @@
+
+/* Includes ------------------------------------------------------------------*/
+#include <stdbool.h>
+#include <stdint>
+#include <string.h>
+#include "API_uart.h"
+#include "stm32f4xx_hal.h"
+/* Private functions ---------------------------------------------------------*/
+
+bool_t uartInit()
+{
+	  UartHandle.Instance          = USARTx;
+
+	  UartHandle.Init.BaudRate     = 9600;
+	  UartHandle.Init.WordLength   = UART_WORDLENGTH_8B;
+	  UartHandle.Init.StopBits     = UART_STOPBITS_1;
+	  UartHandle.Init.Parity       = UART_PARITY_ODD;
+	  UartHandle.Init.HwFlowCtl    = UART_HWCONTROL_NONE;
+	  UartHandle.Init.Mode         = UART_MODE_TX_RX;
+	  UartHandle.Init.OverSampling = UART_OVERSAMPLING_16;
+
+	  if(HAL_UART_Init(&uartHandle) != HAL_OK)
+	  {
+	  		return false; // Indico que fallo la inicializacion
+	  }
+	  // Inicializacion exitosa, imprimo el mensaje y devuelvo true
+	  uartSendString((uint8_t *)INIT_MSG);
+	  return true;
+}
+
+void uartSendString(uint8_t * pstring)
+{
+	if(pstring == NULL) return;
+	// Calculo de timeout:
+	// UART Baudrate = Bits por segundo
+	// Entonces 9600 bauds por segundo = 9600 bits por segundo => 1/9600 segundos por bit = 1000/9600 milisegundos por bit.
+	// 1 caracter del string = 10 bits en UART (8 bits del char + 1 partity + 1 stop)
+	// Entonces el timeout va a ser = (strlen(pstring)+10) * 10 * 1000 <- agregue 10 caracteres extras de seguridad para que el timeout tenga cierto margen.
+	uint16_t length = strlen((const char *)pstring); // CAlculo el largo del string a enviar
+	HAL_UART_Transmit(&uartHandle, pstring, length, ((length+10)*10000)/uartHandle.Init.BaudRate); // Envio datos
+}
+
+void uartSendStringSize(uint8_t * pstring, uint16_t size)
+{
+	if(pstring == NULL || size == 0) return;
+	// Calculo de timeout igual que en uartSendString
+	HAL_UART_Transmit(&uartHandle, pstring, size, ((size+10)*10000)/uartHandle.Init.BaudRate); // Envio datos
+}
+void uartReceiveStringSize(uint8_t * pstring, uint16_t size)
+{
+	if(pstring == NULL || size == 0) return;
+	// Calculo de timeout igual que en uartSendString
+	HAL_UART_Receive(&uartHandle, pstring, size, ((size+10)*10000)/uartHandle.Init.BaudRate); // Recibo datos
+}

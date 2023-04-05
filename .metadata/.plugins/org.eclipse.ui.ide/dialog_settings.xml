@@ -7,6 +7,9 @@
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="/home/felix/Tp_patricio_cese/PdM_workspace/Practica_5"/>
+			<item value="/home/felix/TP_programacion_C/PdM_diazleandro/Practica4_2"/>
+			<item value="/home/felix/TP_programacion_C/PdM_diazleandro/Practica4_1"/>
 			<item value="/home/felix/Tp_patricio_cese/PdM_workspace/Practica_4-2"/>
 			<item value="/home/felix/Tp_patricio_cese/PdM_workspace/Practica_4-1"/>
 			<item value="/home/felix/TP_programacion_C/Marcelo_Baez/EjerciciosPdM/Ej4_MEF_debounce"/>

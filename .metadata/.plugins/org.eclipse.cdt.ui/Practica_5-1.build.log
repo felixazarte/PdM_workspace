@@ -1,0 +1,53 @@
+20:54:24 **** Incremental Build of configuration Debug for project Practica_5-1 ****
+make -j4 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F429ZITx -DSTM32F4 -DNUCLEO_F429ZI -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Inc -I"/home/felix/Tp_patricio_cese/PdM_workspace/Practica_5-1/Drivers/STM32F4xx_HAL_Driver/Inc" -I"/home/felix/Tp_patricio_cese/PdM_workspace/Practica_5-1/Drivers/CMSIS/Include" -I"/home/felix/Tp_patricio_cese/PdM_workspace/Practica_5-1/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"/home/felix/Tp_patricio_cese/PdM_workspace/Practica_5-1/Drivers/BSP/STM32F4xx_Nucleo_144" -I"/home/felix/Tp_patricio_cese/PdM_workspace/Practica_5-1/Drivers/Core/Inc" -I"/home/felix/Tp_patricio_cese/PdM_workspace/Practica_5-1/Drivers/API/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Drivers/API/Src/API_debounce.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F429ZITx -DSTM32F4 -DNUCLEO_F429ZI -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Inc -I"/home/felix/Tp_patricio_cese/PdM_workspace/Practica_5-1/Drivers/STM32F4xx_HAL_Driver/Inc" -I"/home/felix/Tp_patricio_cese/PdM_workspace/Practica_5-1/Drivers/CMSIS/Include" -I"/home/felix/Tp_patricio_cese/PdM_workspace/Practica_5-1/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"/home/felix/Tp_patricio_cese/PdM_workspace/Practica_5-1/Drivers/BSP/STM32F4xx_Nucleo_144" -I"/home/felix/Tp_patricio_cese/PdM_workspace/Practica_5-1/Drivers/Core/Inc" -I"/home/felix/Tp_patricio_cese/PdM_workspace/Practica_5-1/Drivers/API/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/API/Src/API_debounce.d" -MT"Drivers/API/Src/API_debounce.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/API/Src/API_debounce.o"
+arm-none-eabi-gcc "../Drivers/API/Src/API_uart.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F429ZITx -DSTM32F4 -DNUCLEO_F429ZI -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Inc -I"/home/felix/Tp_patricio_cese/PdM_workspace/Practica_5-1/Drivers/STM32F4xx_HAL_Driver/Inc" -I"/home/felix/Tp_patricio_cese/PdM_workspace/Practica_5-1/Drivers/CMSIS/Include" -I"/home/felix/Tp_patricio_cese/PdM_workspace/Practica_5-1/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"/home/felix/Tp_patricio_cese/PdM_workspace/Practica_5-1/Drivers/BSP/STM32F4xx_Nucleo_144" -I"/home/felix/Tp_patricio_cese/PdM_workspace/Practica_5-1/Drivers/Core/Inc" -I"/home/felix/Tp_patricio_cese/PdM_workspace/Practica_5-1/Drivers/API/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/API/Src/API_uart.d" -MT"Drivers/API/Src/API_uart.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/API/Src/API_uart.o"
+../Drivers/API/Src/API_debounce.c: In function 'debounceFSM_init':
+../Drivers/API/Src/API_debounce.c:34:16: error: 'flase' undeclared (first use in this function); did you mean 'false'?
+   34 |  flagRaising = flase;
+      |                ^~~~~
+      |                false
+../Drivers/API/Src/API_debounce.c:34:16: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Drivers/API/Src/subdir.mk:25: Drivers/API/Src/API_debounce.o] Error 1
+make: *** Waiting for unfinished jobs....
+In file included from ../Drivers/API/Src/API_uart.c:7:
+/home/felix/Tp_patricio_cese/PdM_workspace/Practica_5-1/Drivers/API/Inc/API_uart.h:19:1: error: unknown type name 'bool_t'; did you mean 'bool'?
+   19 | bool_t uartInit();
+      | ^~~~~~
+      | bool
+../Drivers/API/Src/API_uart.c:20:8: error: conflicting types for 'uartInit'
+   20 | bool_t uartInit()
+      |        ^~~~~~~~
+In file included from ../Drivers/API/Src/API_uart.c:7:
+/home/felix/Tp_patricio_cese/PdM_workspace/Practica_5-1/Drivers/API/Inc/API_uart.h:19:8: note: previous declaration of 'uartInit' was here
+   19 | bool_t uartInit();
+      |        ^~~~~~~~
+../Drivers/API/Src/API_uart.c: In function 'uartInit':
+../Drivers/API/Src/API_uart.c:22:35: error: 'USARTx' undeclared (first use in this function); did you mean 'USART1'?
+   22 |    UartHandle.Instance          = USARTx;
+      |                                   ^~~~~~
+      |                                   USART1
+../Drivers/API/Src/API_uart.c:22:35: note: each undeclared identifier is reported only once for each function it appears in
+../Drivers/API/Src/API_uart.c:32:22: error: 'uartHandle' undeclared (first use in this function); did you mean 'UartHandle'?
+   32 |    if(HAL_UART_Init(&uartHandle) != HAL_OK)
+      |                      ^~~~~~~~~~
+      |                      UartHandle
+../Drivers/API/Src/API_uart.c:47:1: warning: control reaches end of non-void function [-Wreturn-type]
+   47 | }
+      | ^
+make: *** [Drivers/API/Src/subdir.mk:25: Drivers/API/Src/API_uart.o] Error 1
+../Src/main.c: In function 'main':
+../Src/main.c:105:6: warning: implicit declaration of function 'buttonDown' [-Wimplicit-function-declaration]
+  105 |   if(buttonDown()) {
+      |      ^~~~~~~~~~
+../Src/main.c: In function '__io_putchar':
+../Src/main.c:124:22: error: 'UartHandle' undeclared (first use in this function)
+  124 |   HAL_UART_Transmit(&UartHandle, (uint8_t *)&ch, 1, 0xFFFF);
+      |                      ^~~~~~~~~~
+../Src/main.c:124:22: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Src/subdir.mk:19: Src/main.o] Error 1
+"make -j4 all" terminated with exit code 2. Build might be incomplete.
+
+20:54:27 Build Failed. 10 errors, 2 warnings. (took 3s.367ms)
+

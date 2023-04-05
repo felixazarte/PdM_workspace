@@ -1,0 +1,29 @@
+/* Define to prevent recursive inclusion -------------------------------------*/
+#ifndef __API_UART_H
+#define __API_UART_H
+
+/* Includes ------------------------------------------------------------------*/
+#include "stm32f4xx_hal.h"  		/* <- HAL include */
+#include "stm32f4xx_hal_uart.h"     /* <- HAL_UART include */
+#include <stdint.h>					/* <- Standard integer library */
+#include <stdbool.h>				/* <- Standar bool library*/
+
+
+/* Exported types ------------------------------------------------------------*/
+/* ################ My variable definitions ################ */
+
+
+/* ################ My function definitions ################ */
+
+/* Inicializa la uart, devuelve un true si fue exitoso o un false si hubo un error */
+bool_t uartInit();
+/* Envia un string o cadena de caracteres por la uart, hasta encontrar \0 */
+void uartSendString(uint8_t * pstring);
+/* Envia un string o cadena de caracteres por la uart, de longitud size = tamaño del array */
+void uartSendStringSize(uint8_t * pstring, uint16_t size);
+/* Recibe un string o cadena de caracteres por la uart, de longitud size = tamaño del array */
+void uartReceiveStringSize(uint8_t * pstring, uint16_t size);
+
+#endif /* __API_UART_H */
+
+/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
